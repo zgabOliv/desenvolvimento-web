@@ -54,9 +54,22 @@ namespace DW01.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        [HttpGet]
         public IActionResult CriarProduto()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult CriarProduto(Produto produto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(produto);
+            }
+
+            return Content($"Produto {produto.Nome} válido!");
+        }
+
     }
 }
